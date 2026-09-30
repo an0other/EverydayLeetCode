@@ -1,0 +1,28 @@
+import java.util.*;
+
+class Solution {
+    public boolean isValid(String s) {
+        var stk = new Stack<Character>();
+
+        for (int i = 0 ; i < s.length(); i++){
+            char c = s.charAt(i);
+
+            if (c == '{' || c == '[' || c == '(') stk.push(c); else {
+                
+                if (stk.size() == 0) return false;
+                char tmp = stk.peek();
+                stk.pop();
+                
+                if (c == ')' && tmp == '(') continue; else
+                if (c == ']' && tmp == '[') continue; else
+                if (c == '}' && tmp == '{') continue;
+
+                return false;
+            }
+        }
+
+        if (stk.size() != 0) return false;
+        
+        return true;
+    }
+}
