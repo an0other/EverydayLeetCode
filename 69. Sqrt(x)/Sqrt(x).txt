@@ -1,0 +1,23 @@
+import java.util.*;
+
+class Solution {
+    public int mySqrt(int x) {
+
+        if (x == 0)  return 0; else {        
+            int low = 1, high = x;
+            int mid = 1, tmp = 1;
+
+            while (low < high){
+                
+                mid = low + (high - low + 1) / 2;
+                tmp = x / mid;
+
+                if (mid == tmp && mid * tmp == x) return mid; else 
+                if (mid > tmp) high = mid-1; else low = mid; 
+            }
+
+            if (1L * mid * mid > 1L * x) return mid-1;
+            return mid;
+        }
+    }
+}
