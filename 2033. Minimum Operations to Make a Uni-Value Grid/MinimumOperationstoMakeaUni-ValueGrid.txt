@@ -1,0 +1,9 @@
+class Solution {
+    public int minOperations(int[][] grid, int x) {
+        int[] arr = Arrays.stream(grid).flatMapToInt(Arrays::stream).toArray();
+        Arrays.sort(arr);
+        int idx = arr.length / 2, ans=0;
+        for (int v : arr) if (Math.abs(arr[idx] - v) % x !=0) return -1; else ans += Math.abs(arr[idx] - v) / x;
+        return ans;
+    }
+}
